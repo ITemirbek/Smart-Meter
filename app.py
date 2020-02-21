@@ -7,9 +7,14 @@ from flask import render_template
 def base():
     return render_template('main.html')
     # return render_template('hello.html')
+
+data = {'current': 1.2, 'voltage':220}
+# Current time demonstration by taking data from server
 @app.route('/home')
 def home():
-    return render_template('home.html')
+    for i in range(14):
+        data['current'] = data['current'] +i
+    return render_template('home.html', data = data)
 
 @app.route('/graph')
 def graph():
