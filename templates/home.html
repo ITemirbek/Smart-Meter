@@ -14,18 +14,17 @@
     <h2>
       Your values are saved!
     </h2>
-    <!-- <h3> FIRED        
-    	<script>
-            var ws = new WebSocket("ws://127.0.0.1:5678/"),
-                messages = document.createElement('ul');
-            ws.onmessage = function (event) {
-                var messages = document.getElementsByTagName('ul')[0],
-                    message = document.createElement('li'),
-                    content = document.createTextNode(event.data);
-                message.appendChild(content);
-                messages.appendChild(message);
-            };
-            document.body.appendChild(messages);
-        </script>
-    </h3> -->
+      <div class="row">
+        <div class="phases col-9">
+          {% for key in phase_data %}
+          <div class="phase col-3">
+            <h3>{{key}}</h3>
+            <p>Current: {{phase_data[key]['current']}} A</p> 
+            <p>Voltage: {{phase_data[key]['voltage']}} V</p>
+            <p>Power: {{phase_data[key]['power']}} kW</p>
+            <p>Cosphi: {{phase_data[key]['cosphi']}} </p>
+            <p>Frequency: {{phase_data[key]['frequency']}} Hz</p>
+          </div>
+          {% endfor %}
+      </div>
 {% endblock %}
