@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WebSocket demo</title>
+    </head>
+    <body>
+        <h3 id="demo"></h3>
+        <script>
+            var ws = new WebSocket("ws://127.0.0.1:5678/"),
+                messages = document.createElement('h3');
+            ws.onmessage = function (event) {
+                // console.log(event)
+                var messages = document.getElementsByTagName('h3')[0];
+                var message = document.createElement('h3'),
+                    content = document.createTextNode(event.data);
+                message.appendChild(content);
+                // messages.appendChild(message);
+                // messages.appendChild(content);
+            };
+            // document.body.appendChild(messages);
+            document.write(message);
+            // document.getElementById("demo").innerHTML = message;
+        </script>
+    </body>
+</html>

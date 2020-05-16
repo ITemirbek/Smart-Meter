@@ -10,6 +10,22 @@
   <h1>Home</h1>
   <p class="important">
     Welcome on my awesome homepage.
-    <h3>current = {{data.current}}</h3>
-    <h4>voltage = {{data.voltage}}</h4>
+
+    <h2>
+      Your values are saved!
+    </h2>
+    <!-- <h3> FIRED        
+    	<script>
+            var ws = new WebSocket("ws://127.0.0.1:5678/"),
+                messages = document.createElement('ul');
+            ws.onmessage = function (event) {
+                var messages = document.getElementsByTagName('ul')[0],
+                    message = document.createElement('li'),
+                    content = document.createTextNode(event.data);
+                message.appendChild(content);
+                messages.appendChild(message);
+            };
+            document.body.appendChild(messages);
+        </script>
+    </h3> -->
 {% endblock %}

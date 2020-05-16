@@ -1,20 +1,16 @@
 from flask import Flask
 app = Flask(__name__)
 
-from flask import render_template
+from flask import render_template, request
 
 @app.route('/')
 def base():
     return render_template('main.html')
     # return render_template('hello.html')
 
-data = {'current': 1.2, 'voltage':220}
-# Current time demonstration by taking data from server
 @app.route('/home')
 def home():
-    for i in range(14):
-        data['current'] = data['current'] +i
-    return render_template('home.html', data = data)
+    return render_template('home.html')
 
 @app.route('/graph')
 def graph():
@@ -24,10 +20,23 @@ def graph():
 def weather():
     return render_template('weather.html')
 
-@app.route('/about')
-def about():
-    return render_template('about.html')
+@app.route('/settings', methods = ['GET' , 'POST'])
+def settings():
+	if request.method == 'POST':
+		values = {}
+		values['Rating'] = request.form['Rating']
+		values['RatedFrequency'] = request.form['RatedFrequency']
+		values['Impedance'] = request.form['Impedance']
+		values['RatedCurrent'] = request.form['RatedCurrent']
+		values['PrimaryVoltage'] = request.form['PrimaryVoltage']
+		values['SecondaryVolatage'] = request.form['SecondaryVolatage']
+		# return render_template('home.html', values = values)
+
+	return render_template('settings.html')
 
 @app.route('/hello')
-def hello():
+def hello():	
     return render_template('hello.html')
+
+if __name__ == "__main__":
+	app.run()
