@@ -9,15 +9,32 @@
 {% block content %}
   <h1>Home</h1>
   <p class="important">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     Welcome on my awesome homepage.
+    <script type="text/javascript">
+    $(document).ready(function() {
 
+      var socket = io.connect('http://127.0.0.1:5000');
+
+      socket.on('connect', function() {
+        socket.send('User has connected!');
+      });
+
+      // socket.on('message', function(msg) {
+      //   $("#messages").append('<li>'+msg+'</li>');
+      //   console.log('Received message');
+      // });
+    });
+    
+    </script>
     <h2>
       Your values are saved!
     </h2>
+    <center>
       <div class="row">
-        <div class="phases col-9">
           {% for key in phase_data %}
-          <div class="phase col-3">
+          <div class="four columns">
             <h3>{{key}}</h3>
             <p>Current: {{phase_data[key]['current']}} A</p> 
             <p>Voltage: {{phase_data[key]['voltage']}} V</p>
@@ -27,4 +44,5 @@
           </div>
           {% endfor %}
       </div>
+    </center>
 {% endblock %}

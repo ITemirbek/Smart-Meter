@@ -4,22 +4,34 @@
   {% block head %}
 	<title> {% block title %}{% endblock %} - WeSmart </title>
   <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" type="text/css" href="https://codepen.io/amyoshino/pen/jzXypZ.css">
   {% endblock %}
 </head>
 <body>
+  <div class="row">
+    <div class="two columns">
+      <img src="static/logo.jpg" style="width:150px;height:100px;" >
+    </div>
 
-<ul>
-  <li class="logo"><img src="static/logo.jpg"></li>
-  <li><a href="/home">Home</a></li>
-  <li><a class="active" href="/graph">Graphs</a></li>
-  <li><a href="/weather">Weather</a></li>
-  <li><a href="/settings">Settings</a></li>
-</ul>
-<div id="content" ><center> {% block content %}{% endblock %} </center></div>
-    <div id="footer">
+    <div class="ten columns">
+      <ul>
+        <li><a href="/home">Home</a></li>
+        <li><a href="/graph">Graphs</a></li>
+        <!-- <li><a href="/weather">Weather</a></li> -->
+        <li><a href="/settings">Settings</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="content" class="body" >
+    <center> 
+      {% block content %}{% endblock %} 
+    </center>
+  </div>
+<!--     <div id="footer" class="footer">
       {% block footer %}
       &copy; Copyright 2010 by <a href="http://domain.invalid/">you</a>.
       {% endblock %}
-    </div>
+    </div> -->
 </body>
 </html>
