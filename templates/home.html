@@ -1,48 +1,88 @@
 {% extends "main.html" %}
-{% block title %}Home{% endblock %}
+{% block title %}Metering{% endblock %}
 {% block head %}
   {{ super() }}
   <style type="text/css">
     .important { color: #336699; }
+   
   </style>
+ 
 {% endblock %}
 {% block content %}
-  <h1>Home</h1>
+<header class="page-header">
+  <div class="container-fluid">
+    <h2 class="no-margin-bottom">Metering</h2>
+  </div>
+</header>
   <p class="important">
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.8/socket.io.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    Welcome on my awesome homepage.
-    <script type="text/javascript">
-    $(document).ready(function() {
-
-      var socket = io.connect('http://127.0.0.1:5000');
-
-      socket.on('connect', function() {
-        socket.send('User has connected!');
-      });
-
-      // socket.on('message', function(msg) {
-      //   $("#messages").append('<li>'+msg+'</li>');
-      //   console.log('Received message');
-      // });
-    });
     
     </script>
-    <h2>
-      Your values are saved!
-    </h2>
-    <center>
-      <div class="row">
-          {% for key in phase_data %}
-          <div class="four columns">
-            <h3>{{key}}</h3>
-            <p>Current: {{phase_data[key]['current']}} A</p> 
-            <p>Voltage: {{phase_data[key]['voltage']}} V</p>
-            <p>Power: {{phase_data[key]['power']}} kW</p>
-            <p>Cosphi: {{phase_data[key]['cosphi']}} </p>
-            <p>Frequency: {{phase_data[key]['frequency']}} Hz</p>
+    <section class="dashboard-counts no-padding-bottom">
+      <div class="col-11">
+        <div class="row bg-white shadow">
+          <!-- Item -->
+          <div class="col-xl-6 col-sm-6">
+            <div class="item d-flex align-items-center">
+              <div class="icon bg-violet"><i class="fas fa-water"></i></div>
+              <div class="title"><span>Vibration</span>
+                <div class="progress">
+                  <div role="progressbar" style="width: 25%; height: 5px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-violet"></div>
+                </div>
+              </div>
+              <div class="number"><strong>25 mm/s<sup><small>2</small></sup></strong></div>
+            </div>
           </div>
-          {% endfor %}
+          <!-- Item -->
+          <div class="col-xl-6 col-sm-6">
+            <div class="item d-flex align-items-center">
+              <div class="icon bg-orange"><i class="fas fa-temperature-high"></i></div>
+              <div class="title"><span>Temperature</span>
+                <div class="progress">
+                  <div role="progressbar" style="width: 70%; height: 5px;" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" class="progress-bar bg-orange"></div>
+                </div>
+              </div>
+              <div class="number"><strong>70 &#176;C</strong></div>
+            </div>
+          </div>
+         
+        </div>
       </div>
+    </section>
+ 
+    <center>
+      <div class="col-11">
+      <div id='output' class="phases row">
+      </div>
+    </div>
     </center>
+    <script type="text/javascript">
+      setInterval( () => {
+  
+        fetch("http://192.168.8.107:1080/api/all/all/now")
+        // fetch("http://192.168.100.30:1080/api/all/all/now")
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          let output = ''
+          
+          data.datasets[0].phases.slice(0,3).forEach(function(phase){
+            output_each = '<div class="col-4"><div class="phase card border-0 shadow"><div class="card-header"><h3 class="h4">'+ phase.name +'</h3></div>'
+            output_each = output_each + '<div class="card-body">'
+            phase.values.forEach(function(value){
+              output_each = output_each + '<div class="row"><p class="col-6">'+ value.type +'</p> <p class="col-6 card-numbers">' + value.data.toFixed(3) + ' '+ value.unity + '</p></div>'
+            }
+            );
+            output_each = output_each +'</div></div></div>';
+
+            output += output_each;
+            
+          });
+          document.getElementById('output').innerHTML = output;
+        })
+        .catch(error => console.log('error'))
+      }, 1000)
+      
+    </script>
 {% endblock %}

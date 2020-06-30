@@ -71,6 +71,9 @@ def graph():
 # @app.route('/weather')
 # def weather():
 #     return render_template('weather.html')
+@app.route('/about')
+def about():
+     return render_template('about.html')
 
 @app.route('/settings', methods = ['GET' , 'POST'])
 def settings():
@@ -86,9 +89,7 @@ def settings():
 
 	return render_template('settings.html')
 
-@app.route('/hello')
-def hello():	
-    return render_template('hello.html')
+
 
 # @socketio.on('my event')
 # def handle_my_custom_event(msg):

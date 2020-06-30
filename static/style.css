@@ -1,31 +1,142 @@
-.footer{
-	height:80px;
-	background:#ccc;
+.vertical-nav {
+  background: #599fd9;
+  background: -webkit-linear-gradient(to top, #599fd9, #c2e59c);
+  background: linear-gradient(to top, #599fd9, #c2e59c);
+  min-height: 100%;
+  overflow-x: hidden;
+    min-width: 19rem;
+  width: 19rem;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s;
+  font-size:24px;
+  font-weight: 600;
 }
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
+.page-content {
+  width: calc(100% - 19rem);
+  margin-left: 19rem;
+  transition: all 0.4s;
 }
 
-li {
-  float: left;
+.logo-img{
+  width: 100%;
+    border-radius: 6px;
 }
-
-li a {
-  display: block;
-  color: white;
+.nav-link{
+  background:transparent;
+}
+.nav-item :hover{
+  background: #6200ff2b;
+}
+#sidebar.active {
+  background: #3f00a32b;
+}
+body {
+  background: #EEF5F9!important;
+  min-height: 100vh;
+  overflow-x: hidden;
+   
+}
+.page-header {
+  background: #fff;
+  padding: 20px;
+  -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.1);
+  position: relative;
+  z-index: 8;
+  font-family: "Poppins", sans-serif!important;
+  text-align: left;
+  margin-bottom: 30px;
+  color: #0497d3;
+}
+h2 {
+  font-weight: 700!important;
+  font-size: 3rem!important;
+}
+h3 {
+    font-size: 2.5rem;
+	color: #26a2af;
+}
+section.dashboard-counts div[class*='col-'] .item {
+  border-right: 1px solid #eee;
+  padding: 25px 0;
+}
+section.dashboard-counts div[class*='col-']:last-of-type .item {
+  border-right: none;
+}
+section.dashboard-counts .icon {
+  width: 40px;
+  height: 40px;
+  line-height: 40px;
   text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
+  min-width: 40px;
+  max-width: 40px;
+  border-radius: 50%;
 }
-
-li a:hover:not(.active) {
-  background-color: #111;
+.bg-violet {
+  background: #796AEE !important;
+  color: #fff;
 }
+section.dashboard-counts .title {
+  font-size: 2em;
+  font-weight: 300;
+  color: #777;
+  margin: 0 20px;
+}
+section.dashboard-counts .number {
+  font-size: 1.8em;
+  font-weight: 300;
+}
+.dashboard-counts {
+  margin: 0 auto 50px;
+}
+.bg-orange {
+  background: #ffc36d !important;
+  color: #fff;
+}
+.phase{
+  border-radius: 0!important;
+}
+.card-body{
+  padding: 2rem!important;
 
-.active {
-  background-color: #4CAF50;
+  font-size: 14px!important;
+  color: #777;
+
+}
+.card-header {
+  padding: 1rem 1.25rem!important;
+  background-color: #fff!important;
+  border-bottom: 1px solid #eee!important;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.05);
+  
+}
+.phases{
+  text-align: left;
+  
+}
+.progress {
+  height: 5px!important;
+}
+.card-numbers{
+  text-align: right;
+}
+.settings-text{
+  font-size: 24px;
+  font-weight: 600;
+  color: #17cca2;
+}
+#settings input{
+  font-size: 18px;
+  width: 250px;
+  height: 60px;
+  margin: 10px;
+
+}
+.settings-button{
+  background:#599fd9!important; 
+  color: white!important;
 }
